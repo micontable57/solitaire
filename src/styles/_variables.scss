@@ -1,0 +1,25 @@
+@use "sass:math";
+
+// Dimensões das cartas
+$width: 125px;
+$height: $width * 1.5;
+$radius: math.div($width, 20);
+
+// Cores
+$red: #c0392b;
+$black: #2c3e50;
+$green: #008000;
+
+// Offsets
+$offset: math.div($width, 5);
+$offset-alt: 0;
+
+// Layout
+$container-width: $width * 7 + 70;
+
+// Mixin utilitário
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

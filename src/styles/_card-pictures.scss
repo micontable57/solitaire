@@ -1,0 +1,70 @@
+@use "variables" as *;
+
+/* CARTAS COM FIGURAS (J, Q, K) */
+
+.picture .middle {
+  height: 80%;
+  left: 16%;
+  top: 10%;
+  width: 68%;
+  border: 1px solid #999;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/cards.jpg);
+  background-size: $width * 2.05 $width * 4.8;
+}
+
+$club: 0px;
+$heart: -150px;
+$spade: -300px;
+$diamond: -450px;
+
+$jack: 0px;
+$queen: -86px;
+$king: -170px;
+
+.diamonds.card-J .middle {
+  background-position: $jack $diamond;
+}
+
+.hearts.card-J .middle {
+  background-position: $jack $heart;
+}
+
+.clubs.card-J .middle {
+  background-position: $jack $club;
+}
+
+.spades.card-J .middle {
+  background-position: $jack $spade;
+}
+
+.diamonds.card-Q .middle {
+  background-position: $queen $diamond;
+}
+
+.hearts.card-Q .middle {
+  background-position: $queen $heart;
+}
+
+.clubs.card-Q .middle {
+  background-position: $queen $club;
+}
+
+.spades.card-Q .middle {
+  background-position: $queen $spade;
+}
+
+.diamonds.card-K .middle {
+  background-position: $king $diamond;
+}
+
+.hearts.card-K .middle {
+  background-position: $king $heart;
+}
+
+.clubs.card-K .middle {
+  background-position: $king $club;
+}
+
+.spades.card-K .middle {
+  background-position: $king $spade;
+}

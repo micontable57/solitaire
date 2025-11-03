@@ -1,0 +1,331 @@
+@use "sass:math";
+@use "variables" as *;
+
+/* ÁS (ACE) */
+
+.card-1 .middle {
+  @include flex-center;
+  font-size: math.div($width, 2);
+}
+
+.card-1 .middle span {
+  position: relative;
+  height: math.div($width, 2);
+  width: math.div($width, 2);
+}
+
+.card-1 .middle span::after {
+  font-size: math.div($width, 2);
+}
+
+/* DOIS (2) */
+
+.card-2 .middle span {
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.card-2 .middle span:nth-child(1) {
+  top: $offset-alt;
+}
+
+.card-2 .middle span:nth-child(2) {
+  bottom: $offset-alt;
+}
+
+.card-2 .middle span:nth-child(2) {
+  transform: rotate(180deg);
+  transform-origin: 25% 50% 0;
+}
+
+/* TRÊS (3) */
+
+.card-3 .middle span {
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.card-3 .middle span:nth-child(1) {
+  top: $offset-alt;
+}
+
+.card-3 .middle span:nth-child(2) {
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.card-3 .middle span:nth-child(3) {
+  bottom: $offset-alt;
+}
+
+.card-3 .middle span:nth-child(3) {
+  transform: rotate(180deg);
+  transform-origin: 25% 50% 0;
+}
+
+/* QUATRO (4) */
+
+.card-4 .middle span:nth-child(1),
+.card-4 .middle span:nth-child(3) {
+  left: $offset;
+}
+
+.card-4 .middle span:nth-child(2),
+.card-4 .middle span:nth-child(4) {
+  right: $offset;
+}
+
+.card-4 .middle span:nth-child(1),
+.card-4 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-4 .middle span:nth-child(3),
+.card-4 .middle span:nth-child(4) {
+  bottom: $offset-alt;
+  transform: rotate(180deg);
+}
+
+/* CINCO (5) */
+
+.card-5 .middle span:nth-child(1),
+.card-5 .middle span:nth-child(3) {
+  left: $offset;
+}
+
+.card-5 .middle span:nth-child(2),
+.card-5 .middle span:nth-child(4) {
+  right: $offset;
+}
+
+.card-5 .middle span:nth-child(1),
+.card-5 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-5 .middle span:nth-child(3),
+.card-5 .middle span:nth-child(4) {
+  bottom: $offset-alt;
+  transform: rotate(180deg);
+}
+
+.card-5 .middle span:nth-child(5) {
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+/* SEIS (6) */
+
+.card-6 .middle span:nth-child(1),
+.card-6 .middle span:nth-child(3),
+.card-6 .middle span:nth-child(5) {
+  left: $offset;
+}
+
+.card-6 .middle span:nth-child(2),
+.card-6 .middle span:nth-child(4),
+.card-6 .middle span:nth-child(6) {
+  right: $offset;
+}
+
+.card-6 .middle span:nth-child(1),
+.card-6 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-6 .middle span:nth-child(5),
+.card-6 .middle span:nth-child(6) {
+  bottom: $offset-alt;
+  transform: rotate(180deg);
+}
+
+.card-6 .middle span:nth-child(3),
+.card-6 .middle span:nth-child(4) {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+/* SETE (7) */
+
+.card-7 .middle span:nth-child(1),
+.card-7 .middle span:nth-child(3),
+.card-7 .middle span:nth-child(5) {
+  left: $offset;
+}
+
+.card-7 .middle span:nth-child(2),
+.card-7 .middle span:nth-child(4),
+.card-7 .middle span:nth-child(6) {
+  right: $offset;
+}
+
+.card-7 .middle span:nth-child(1),
+.card-7 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-7 .middle span:nth-child(5),
+.card-7 .middle span:nth-child(6) {
+  bottom: $offset-alt;
+  transform: rotate(180deg);
+}
+
+.card-7 .middle span:nth-child(3),
+.card-7 .middle span:nth-child(4) {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+.card-7 .middle span:nth-child(7) {
+  top: 25%;
+  left: 50%;
+  transform: translate3d(-50%, -25%, 0);
+}
+
+/* OITO (8) */
+
+.card-8 .middle span:nth-child(1),
+.card-8 .middle span:nth-child(3),
+.card-8 .middle span:nth-child(5) {
+  left: $offset;
+}
+
+.card-8 .middle span:nth-child(2),
+.card-8 .middle span:nth-child(4),
+.card-8 .middle span:nth-child(6) {
+  right: $offset;
+}
+
+.card-8 .middle span:nth-child(1),
+.card-8 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-8 .middle span:nth-child(5),
+.card-8 .middle span:nth-child(6) {
+  bottom: $offset-alt;
+  transform: rotate(180deg);
+}
+
+.card-8 .middle span:nth-child(3),
+.card-8 .middle span:nth-child(4) {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+.card-8 .middle span:nth-child(7) {
+  top: 25%;
+  left: 50%;
+  transform: translate3d(-50%, -25%, 0);
+}
+
+.card-8 .middle span:nth-child(8) {
+  top: 75%;
+  left: 50%;
+  transform: translate3d(-50%, -75%, 0) rotate(180deg);
+}
+
+/* NOVE (9) */
+
+.card-9 .middle span:nth-child(1),
+.card-9 .middle span:nth-child(3),
+.card-9 .middle span:nth-child(5),
+.card-9 .middle span:nth-child(7) {
+  left: $offset;
+}
+
+.card-9 .middle span:nth-child(2),
+.card-9 .middle span:nth-child(4),
+.card-9 .middle span:nth-child(6),
+.card-9 .middle span:nth-child(8) {
+  right: $offset;
+}
+
+.card-9 .middle span:nth-child(1),
+.card-9 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-9 .middle span:nth-child(3),
+.card-9 .middle span:nth-child(4) {
+  top: 25%;
+}
+
+.card-9 .middle span:nth-child(5),
+.card-9 .middle span:nth-child(6) {
+  bottom: 25%;
+}
+
+.card-9 .middle span:nth-child(7),
+.card-9 .middle span:nth-child(8) {
+  bottom: $offset-alt;
+}
+
+.card-9 .middle span:nth-child(5),
+.card-9 .middle span:nth-child(6),
+.card-9 .middle span:nth-child(7),
+.card-9 .middle span:nth-child(8) {
+  transform: rotate(180deg);
+}
+
+.card-9 .middle span:nth-child(9) {
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+/* DEZ (10) */
+
+.card-10 .middle span:nth-child(1),
+.card-10 .middle span:nth-child(3),
+.card-10 .middle span:nth-child(5),
+.card-10 .middle span:nth-child(7) {
+  left: $offset;
+}
+
+.card-10 .middle span:nth-child(2),
+.card-10 .middle span:nth-child(4),
+.card-10 .middle span:nth-child(6),
+.card-10 .middle span:nth-child(8) {
+  right: $offset;
+}
+
+.card-10 .middle span:nth-child(1),
+.card-10 .middle span:nth-child(2) {
+  top: $offset-alt;
+}
+
+.card-10 .middle span:nth-child(3),
+.card-10 .middle span:nth-child(4) {
+  top: 25%;
+}
+
+.card-10 .middle span:nth-child(5),
+.card-10 .middle span:nth-child(6) {
+  bottom: 25%;
+}
+
+.card-10 .middle span:nth-child(7),
+.card-10 .middle span:nth-child(8) {
+  bottom: $offset-alt;
+}
+
+.card-10 .middle span:nth-child(5),
+.card-10 .middle span:nth-child(6),
+.card-10 .middle span:nth-child(7),
+.card-10 .middle span:nth-child(8) {
+  transform: rotate(180deg);
+}
+
+.card-10 .middle span:nth-child(9) {
+  left: 50%;
+  top: 16.6667%;
+  transform: translate3d(-50%, -16.6667%, 0);
+}
+
+.card-10 .middle span:nth-child(10) {
+  left: 50%;
+  bottom: 16.6667%;
+  transform: translate3d(-50%, 16.6667%, 0) rotate(180deg);
+}

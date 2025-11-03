@@ -1,0 +1,73 @@
+@use "variables" as *;
+
+#game {
+  text-align: center;
+}
+
+#score {
+  color: #fff;
+  float: right;
+  padding: 6px 12px;
+}
+
+.columns {
+  width: 100%;
+}
+
+.column {
+  float: left;
+  position: relative;
+  width: $width;
+  height: $height;
+}
+
+// Posicionamento das cartas nas colunas
+@for $i from 1 through 20 {
+  $pos: ($offset * $i) - $offset;
+  .column .card:nth-child(#{$i}),
+  .column .ghost:nth-child(#{$i}) {
+    top: $pos;
+    z-index: $i + 10;
+  }
+}
+
+.pack,
+.dealt {
+  position: relative;
+  width: $width;
+  height: $height;
+  float: left;
+}
+
+.stack {
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.dealer,
+.stacks {
+  float: left;
+}
+
+.dealer {
+  width: 30%;
+  text-align: left;
+}
+
+.stacks {
+  width: 70%;
+  text-align: right;
+}
+
+.pack,
+.dealt,
+.stack,
+.column {
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0 10px 10px 0;
+  border-radius: $radius;
+}
