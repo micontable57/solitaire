@@ -11,12 +11,6 @@ import { BookImage, Lock, X } from 'lucide-react'
 import { useState } from 'react'
 import { isVideo } from '@/game/utils'
 
-// Função para calcular o índice da carta
-function getCardIndex(value: number, suit: string) {
-  const suits = ['hearts', 'spades', 'diamonds', 'clubs']
-  return suits.indexOf(suit) * 13 + (value - 1)
-}
-
 export function GalleryDialog({
   backgrounds,
   flippedCards,
@@ -52,24 +46,40 @@ export function GalleryDialog({
   ]
 
   // Gera todas as 52 cartas
-  const cards = suits
-    .flatMap((suit) =>
-      values.map((value, valueIndex) => {
-        const index = getCardIndex(valueIndex + 1, suit.name)
+  const getCards = () => {
+    const cards: Array<{
+      suit: string
+      suitSymbol: string
+      suitColor: string
+      value: string
+      index: number
+      isFlipped: boolean
+    }> = []
+
+    suits.forEach((suit, suitIndex) => {
+      values.forEach((value, valueIndex) => {
+        const index = suitIndex * 13 + valueIndex
         const isFlipped = flippedCards.includes(index)
 
-        return {
+        const card = {
           suit: suit.name,
           suitSymbol: suit.symbol,
           suitColor: suit.color,
           value: value,
-          valueNumber: valueIndex + 1,
           index,
           isFlipped,
         }
+
+        cards.push(card)
       })
+    })
+
+    const sortedCards = [...cards].sort((a, b) =>
+      a.isFlipped === b.isFlipped ? 0 : a.isFlipped ? -1 : 1
     )
-    .sort((a, b) => (a.isFlipped === b.isFlipped ? 0 : a.isFlipped ? -1 : 1))
+
+    return sortedCards
+  }
 
   return (
     <Dialog>
@@ -88,9 +98,9 @@ export function GalleryDialog({
           </DialogHeader>
 
           <div className="grid grid-cols-3 gap-4 p-4">
-            {cards.map((card) => {
-              const cardIndex = getCardIndex(card.valueNumber, card.suit)
-              const bg = backgrounds[cardIndex]
+            {getCards().map((card) => {
+              const cardIndex = card.index
+              const bg = backgrounds[cardIndex % backgrounds.length]
 
               return (
                 <button

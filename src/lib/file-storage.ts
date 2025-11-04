@@ -11,6 +11,7 @@ export interface StoredFile {
   type: string
   size: number
   lastModified: number
+  extension: string
   content: ArrayBuffer
   createdAt: Date
   updatedAt?: Date
@@ -35,11 +36,13 @@ export async function initDB() {
 export async function addFile(file: File) {
   const db = await initDB()
   const blob = await file.arrayBuffer()
+  const extension = file.name.split('.').pop() || ''
   const fileData = {
     name: file.name,
     type: file.type,
     size: file.size,
     lastModified: file.lastModified,
+    extension,
     content: blob,
     createdAt: new Date(),
   } satisfies StoredFile
@@ -65,12 +68,14 @@ export async function updateFile(id: number, newFile: File) {
   if (!existing) throw new Error('Arquivo não encontrado.')
 
   const blob = await newFile.arrayBuffer()
+  const extension = newFile.name.split('.').pop() || ''
   const updated = {
     ...existing,
     name: newFile.name,
     type: newFile.type,
     size: newFile.size,
     lastModified: newFile.lastModified,
+    extension,
     content: blob,
     updatedAt: new Date(),
   }
@@ -91,8 +96,10 @@ export function fileFromRecord(record: StoredFile): Blob {
 
 // 🔹 UTIL — cria URL temporário do Blob (útil para <img> e <video>)
 export function createObjectURL(record: StoredFile): string {
+  console.log('Creating object URL for record:', record)
   const blob = fileFromRecord(record)
-  return URL.createObjectURL(blob)
+  const url = URL.createObjectURL(blob)
+  return `${url}#.${record.extension}`
 }
 
 // 🔹 UTIL — limpa todos os arquivos do banco
