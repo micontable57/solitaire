@@ -4,9 +4,10 @@ import { each } from "./utils.js";
 /**
  * Pack class representing a full deck of 52 cards
  */
-export function Pack() {
+export function Pack(backgrounds = []) {
   this.cards = [];
   this.suits = ["hearts", "spades", "diamonds", "clubs"];
+  this.backgrounds = backgrounds;
 
   var count = 0;
   each(
@@ -14,13 +15,16 @@ export function Pack() {
     function (i, suit) {
       for (var j = 1; j < 14; j++) {
         const index = j - 1 + i * 13; // Índice único para cada carta, 0 a 51
-        var card = new Card(j, suit);
+
+        const bgSrc = this.backgrounds[index % this.backgrounds.length] || null;
+
+        var card = new Card(j, suit, bgSrc);
         card.el.idx = count;
         this.cards.push(card);
         count++;
       }
     },
-    this
+    this,
   );
 }
 

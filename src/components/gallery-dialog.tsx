@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { BookImage, Lock, X } from "lucide-react";
-import { getBackgroundByIndex, isVideo } from "@/game/backgrounds";
 import { useState } from "react";
+import { isVideo } from "@/game/utils";
 
 // Função para calcular o índice da carta
 function getCardIndex(value: number, suit: string) {
@@ -17,7 +17,13 @@ function getCardIndex(value: number, suit: string) {
   return suits.indexOf(suit) * 13 + (value - 1);
 }
 
-export function GalleryDialog({ flippedCards }: { flippedCards: number[] }) {
+export function GalleryDialog({
+  backgrounds,
+  flippedCards,
+}: {
+  backgrounds: string[];
+  flippedCards: number[];
+}) {
   const [fullscreenCard, setFullscreenCard] = useState<{
     bg: string;
     card: any;
@@ -83,7 +89,8 @@ export function GalleryDialog({ flippedCards }: { flippedCards: number[] }) {
 
           <div className="grid grid-cols-3 gap-4 p-4">
             {cards.map((card) => {
-              const bg = getBackgroundByIndex(card.index);
+              const cardIndex = getCardIndex(card.valueNumber, card.suit);
+              const bg = backgrounds[cardIndex];
 
               return (
                 <button

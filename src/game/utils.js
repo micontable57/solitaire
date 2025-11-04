@@ -62,9 +62,9 @@ export const style = function (t, e) {
     if (!e) return win.getComputedStyle(t);
     n &&
       each(e, function (t, e) {
-        t in i || (t = "-webkit-" + t),
+        (t in i || (t = "-webkit-" + t),
           (i[t] =
-            e + ("string" == typeof e ? "" : "opacity" === t ? "" : "px"));
+            e + ("string" == typeof e ? "" : "opacity" === t ? "" : "px")));
       });
   }
 };
@@ -125,4 +125,11 @@ export { win, doc, body };
 export function getCardIndex(value, suit) {
   const suits = ["hearts", "spades", "diamonds", "clubs"];
   return suits.indexOf(suit) * 13 + (value - 1);
+}
+
+export function isVideo(url) {
+  if (typeof url !== "string") return false;
+
+  const videoExtensions = [".mp4", ".webm", ".ogg"];
+  return videoExtensions.some((ext) => url.toLowerCase().endsWith(ext));
 }

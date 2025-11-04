@@ -18,6 +18,7 @@ import { Pack } from "./pack.js";
  */
 const defaultConfig = {
   autoStack: true,
+  backgrounds: [],
 };
 
 // GAME
@@ -29,6 +30,7 @@ function Game(el, options) {
   this.el = el;
 
   this.options = extend(defaultConfig, options);
+  this.backgrounds = options.backgrounds ?? [];
 
   this.score = 0;
 
@@ -38,7 +40,7 @@ function Game(el, options) {
 
   this.history = [];
 
-  this.pack = new Pack();
+  this.pack = new Pack(this.backgrounds);
 
   this.autoStacking = false;
 
