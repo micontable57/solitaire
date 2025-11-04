@@ -17,6 +17,16 @@ import { UploadFilesDialog } from './components/upload-files-dialog.js'
 import { useQuery } from '@tanstack/react-query'
 import { queries } from './lib/query-key-store.js'
 import { createObjectURL } from './lib/file-storage.js'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 
 interface GameInstance {
   score: number
@@ -125,6 +135,11 @@ function App() {
         </ButtonGroup>
 
         <ButtonGroup>
+          {forceWinAlert()}
+          {restartAlert()}
+        </ButtonGroup>
+
+        <ButtonGroup>
           <Button
             type="button"
             variant={'outline'}
@@ -144,26 +159,7 @@ function App() {
             Hint
           </Button>
         </ButtonGroup>
-        <ButtonGroup>
-          <Button
-            type="button"
-            variant={'outline'}
-            size={'sm'}
-            onClick={handleCheat}
-          >
-            <Trophy />
-            Force Win
-          </Button>
-          <Button
-            type="button"
-            variant={'outline'}
-            size={'sm'}
-            onClick={handleRestart}
-          >
-            <RotateCcw />
-            Restart
-          </Button>
-        </ButtonGroup>
+
         <Button
           type="button"
           variant={'outline'}
@@ -179,6 +175,58 @@ function App() {
       <div id="game" ref={gameEl}></div>
     </div>
   )
+
+  function restartAlert() {
+    return (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button type="button" variant={'outline'} size={'sm'}>
+            <RotateCcw />
+            Restart
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Tem certeza que deseja reiniciar o jogo?
+            </AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => handleRestart()}>
+              Confirmar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    )
+  }
+
+  function forceWinAlert() {
+    return (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button type="button" variant={'outline'} size={'sm'}>
+            <Trophy />
+            Force Win
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Tem certeza que deseja forçar a vitória?
+            </AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => handleCheat()}>
+              Confirmar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    )
+  }
 }
 
 export default App

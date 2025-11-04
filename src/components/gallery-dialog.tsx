@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from './ui/button'
-import { BookImage, Lock, X } from 'lucide-react'
+import { BookImage, Clapperboard, Lock, X } from 'lucide-react'
 import { useState } from 'react'
 import { isVideo } from '@/game/utils'
 
@@ -114,15 +114,24 @@ export function GalleryDialog({
                       <>
                         <video
                           src={bg}
-                          autoPlay
                           loop
                           muted
                           playsInline
                           className="h-full w-full object-contain"
+                          onMouseEnter={(e) => e.currentTarget.play()}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.pause()
+                            e.currentTarget.currentTime = 0
+                          }}
                         />
                         <video
                           src={bg}
                           className="absolute inset-0 -z-10 object-cover opacity-30"
+                        />
+                        <Clapperboard
+                          fill="white"
+                          stroke="black"
+                          className="pointer-events-none absolute top-4 left-4"
                         />
                       </>
                     ) : (
@@ -147,7 +156,7 @@ export function GalleryDialog({
                   )}
 
                   {/* Label com naipe e valor */}
-                  <div className="absolute right-0 bottom-0 left-0 bg-black/70 px-2 py-1.5 text-center transition-opacity">
+                  <div className="pointer-events-none absolute right-0 bottom-0 left-0 bg-black/70 px-2 py-1.5 text-center transition-opacity">
                     <span className={`text-sm font-bold ${card.suitColor}`}>
                       {card.value}
                       <span className="ml-0.5">{card.suitSymbol}</span>

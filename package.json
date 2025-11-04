@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build-start": "npm run build && npm run start",
+    "start": "vite preview",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
