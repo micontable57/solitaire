@@ -3,10 +3,10 @@ import { getAllFiles } from './file-storage'
 
 // if you prefer to declare everything in one file
 export const queries = createQueryKeyStore({
-    images: {
-        get: {
-            queryKey: null,
-            queryFn: () => getAllFiles(),
-        },
+  images: {
+    get: {
+      queryKey: null,
+      queryFn: () => getAllFiles(),
     },
+  },
 })

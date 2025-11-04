@@ -4,12 +4,12 @@
  * @param {Number} y
  */
 export function Vector(x, y) {
-  this.x = x;
-  this.y = y;
+  this.x = x
+  this.y = y
 }
 
 Vector.prototype = {
   add: function (v) {
-    (this.x += v.x), (this.y += v.y);
+    ;((this.x += v.x), (this.y += v.y))
   },
-};
+}

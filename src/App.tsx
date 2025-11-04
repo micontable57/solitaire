@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import './styles/index.scss'
 import { Game } from './game/game.js'
 import { Button } from './components/ui/button.js'
@@ -49,9 +49,11 @@ function App() {
   const gameRef = useRef<GameInstance | null>(null)
   const gameEl = useRef<HTMLDivElement | null>(null)
 
-  const { data: images = [], isPending: imagesPending } = useQuery({
+  const { data: files = [], isPending: imagesPending } = useQuery({
     ...queries.images.get,
   })
+
+  const backgrounds = useMemo(() => files.map(createObjectURL), [files])
 
   useEffect(() => {
     if (!gameEl.current) return
@@ -61,7 +63,7 @@ function App() {
 
     const game = new Game(container, {
       autoStack,
-      backgrounds: images.map(createObjectURL),
+      backgrounds,
     }) as unknown as GameInstance
     gameRef.current = game
 
@@ -83,7 +85,7 @@ function App() {
       game.destroy()
       gameRef.current = null
     }
-  }, [images, imagesPending])
+  }, [backgrounds, imagesPending])
 
   const handleUndo = () => {
     gameRef.current?.undo()
@@ -116,7 +118,10 @@ function App() {
       <div className="flex gap-2">
         <ButtonGroup>
           <UploadFilesDialog />
-          <GalleryDialog backgrounds={[]} flippedCards={flippedCards} />
+          <GalleryDialog
+            backgrounds={backgrounds}
+            flippedCards={flippedCards}
+          />
         </ButtonGroup>
 
         <ButtonGroup>

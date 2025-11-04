@@ -5,58 +5,58 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "./ui/button";
-import { BookImage, Lock, X } from "lucide-react";
-import { useState } from "react";
-import { isVideo } from "@/game/utils";
+} from '@/components/ui/dialog'
+import { Button } from './ui/button'
+import { BookImage, Lock, X } from 'lucide-react'
+import { useState } from 'react'
+import { isVideo } from '@/game/utils'
 
 // Função para calcular o índice da carta
 function getCardIndex(value: number, suit: string) {
-  const suits = ["hearts", "spades", "diamonds", "clubs"];
-  return suits.indexOf(suit) * 13 + (value - 1);
+  const suits = ['hearts', 'spades', 'diamonds', 'clubs']
+  return suits.indexOf(suit) * 13 + (value - 1)
 }
 
 export function GalleryDialog({
   backgrounds,
   flippedCards,
 }: {
-  backgrounds: string[];
-  flippedCards: number[];
+  backgrounds: string[]
+  flippedCards: number[]
 }) {
   const [fullscreenCard, setFullscreenCard] = useState<{
-    bg: string;
-    card: any;
-  } | null>(null);
+    bg: string
+    card: any
+  } | null>(null)
 
   const suits = [
-    { name: "hearts", symbol: "♥", color: "text-red-500" },
-    { name: "spades", symbol: "♠", color: "text-black" },
-    { name: "diamonds", symbol: "♦", color: "text-red-500" },
-    { name: "clubs", symbol: "♣", color: "text-black" },
-  ];
+    { name: 'hearts', symbol: '♥', color: 'text-red-500' },
+    { name: 'spades', symbol: '♠', color: 'text-black' },
+    { name: 'diamonds', symbol: '♦', color: 'text-red-500' },
+    { name: 'clubs', symbol: '♣', color: 'text-black' },
+  ]
   const values = [
-    "A",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K",
-  ];
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ]
 
   // Gera todas as 52 cartas
   const cards = suits
     .flatMap((suit) =>
       values.map((value, valueIndex) => {
-        const index = getCardIndex(valueIndex + 1, suit.name);
-        const isFlipped = flippedCards.includes(index);
+        const index = getCardIndex(valueIndex + 1, suit.name)
+        const isFlipped = flippedCards.includes(index)
 
         return {
           suit: suit.name,
@@ -66,15 +66,15 @@ export function GalleryDialog({
           valueNumber: valueIndex + 1,
           index,
           isFlipped,
-        };
-      }),
+        }
+      })
     )
-    .sort((a, b) => (a.isFlipped === b.isFlipped ? 0 : a.isFlipped ? -1 : 1));
+    .sort((a, b) => (a.isFlipped === b.isFlipped ? 0 : a.isFlipped ? -1 : 1))
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"} size={"sm"}>
+        <Button variant={'outline'} size={'sm'}>
           <BookImage /> Gallery
         </Button>
       </DialogTrigger>
@@ -89,8 +89,8 @@ export function GalleryDialog({
 
           <div className="grid grid-cols-3 gap-4 p-4">
             {cards.map((card) => {
-              const cardIndex = getCardIndex(card.valueNumber, card.suit);
-              const bg = backgrounds[cardIndex];
+              const cardIndex = getCardIndex(card.valueNumber, card.suit)
+              const bg = backgrounds[cardIndex]
 
               return (
                 <button
@@ -144,7 +144,7 @@ export function GalleryDialog({
                     </span>
                   </div>
                 </button>
-              );
+              )
             })}
           </div>
         </div>
@@ -195,5 +195,5 @@ export function GalleryDialog({
         )}
       </DialogContent>
     </Dialog>
-  );
+  )
 }

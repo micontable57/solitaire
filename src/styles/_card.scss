@@ -1,5 +1,5 @@
-@use "sass:math";
-@use "variables" as *;
+@use 'sass:math';
+@use 'variables' as *;
 
 /* ESTRUTURA BASE DA CARTA */
 
@@ -60,7 +60,7 @@
 
 .card .rear {
   background-color: #fff;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/back.png");
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/back.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 82% 88%;
@@ -129,22 +129,22 @@
 
 .hearts .value::after,
 .hearts span::after {
-  content: "♥";
+  content: '♥';
 }
 
 .diamonds .value::after,
 .diamonds span::after {
-  content: "♦";
+  content: '♦';
 }
 
 .clubs .value::after,
 .clubs span::after {
-  content: "♣";
+  content: '♣';
 }
 
 .spades .value::after,
 .spades span::after {
-  content: "♠";
+  content: '♠';
 }
 
 /* SÍMBOLO CENTRAL */
