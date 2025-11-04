@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { GalleryDialog } from "./components/gallery-dialog.js";
 import { useLocalStorage } from "./hooks/use-local-storage.js";
+import { ButtonGroup } from "./components/ui/button-group.js";
+import { UploadFilesDialog } from "./components/upload-files-dialog.js";
 
 interface GameInstance {
   score: number;
@@ -103,33 +105,61 @@ function App() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 pt-8">
       <div className="flex gap-2">
-        <GalleryDialog flippedCards={flippedCards} />
+        <ButtonGroup>
+          <UploadFilesDialog />
+          <GalleryDialog flippedCards={flippedCards} />
+        </ButtonGroup>
 
-        <Button type="button" size={"sm"} onClick={handleUndo}>
-          Undo
-          <Undo />
-        </Button>
-        <Button type="button" size={"sm"} onClick={handleHint}>
-          Hint
-          <Lightbulb />
-        </Button>
-        <Button type="button" size={"sm"} onClick={handleCheat}>
-          Force Win
-          <Trophy />
-        </Button>
+        <ButtonGroup>
+          <Button
+            type="button"
+            variant={"outline"}
+            size={"sm"}
+            onClick={handleUndo}
+          >
+            <Undo />
+            Undo
+          </Button>
+          <Button
+            type="button"
+            variant={"outline"}
+            size={"sm"}
+            onClick={handleHint}
+          >
+            <Lightbulb />
+            Hint
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button
+            type="button"
+            variant={"outline"}
+            size={"sm"}
+            onClick={handleCheat}
+          >
+            <Trophy />
+            Force Win
+          </Button>
+          <Button
+            type="button"
+            variant={"outline"}
+            size={"sm"}
+            onClick={handleRestart}
+          >
+            <RotateCcw />
+            Restart
+          </Button>
+        </ButtonGroup>
         <Button
           type="button"
+          variant={"outline"}
           size={"sm"}
-          variant={"default"}
           onClick={toggleAutoStack}
         >
-          Auto-Stack
           {autoStack ? <CircleCheckBig /> : <CircleOff />}
+          Auto-Stack
         </Button>
-        <Button type="button" size={"sm"} onClick={handleRestart}>
-          Restart
-          <RotateCcw />
-        </Button>
+
         <div id="score">Score: {score}</div>
       </div>
       <div id="game" ref={gameEl}></div>

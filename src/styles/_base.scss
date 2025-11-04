@@ -5,14 +5,6 @@
   font-family: "Gotham Rounded";
 }
 
-body {
-  min-height: 100vh;
-  margin: 0;
-  font-family: "Gotham Rounded";
-  // overflow: hidden;
-  background-color: $green;
-}
-
 canvas {
   position: fixed;
   z-index: 10;

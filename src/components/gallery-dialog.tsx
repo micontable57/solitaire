@@ -68,8 +68,8 @@ export function GalleryDialog({ flippedCards }: { flippedCards: number[] }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size={"sm"}>
-          Gallery <BookImage />
+        <Button variant={"outline"} size={"sm"}>
+          <BookImage /> Gallery
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-5xl sm:max-w-[90vw]">
